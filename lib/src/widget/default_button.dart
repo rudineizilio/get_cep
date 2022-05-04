@@ -5,14 +5,14 @@ class DefaultButton extends StatelessWidget {
     Key? key,
     required this.label,
     required this.backgroundColor,
-    required this.borderColor,
+    this.borderColor = Colors.transparent,
     required this.labelColor,
     required this.onTap,
   }) : super(key: key);
 
   final String label;
   final Color backgroundColor;  
-  final Color borderColor;
+  final Color? borderColor;
   final Color labelColor;
   final Function onTap;
 
@@ -25,7 +25,7 @@ class DefaultButton extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
-          color: borderColor,
+          color: borderColor!,
         ),
       ),
       child: ClipRRect(

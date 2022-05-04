@@ -73,8 +73,7 @@ class _HomePageState extends State<HomePage> {
           DefaultButton(
             label: 'Buscar',
             backgroundColor: const Color.fromRGBO(38, 63, 47, 1),
-            borderColor: const Color.fromRGBO(38, 63, 47, 1),
-            labelColor: Colors.white,
+            labelColor: const Color.fromRGBO(133, 221, 164, 1),
             onTap: () {
               Navigator.push(
                 context,
