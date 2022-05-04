@@ -20,4 +20,14 @@ class CepModel {
     localidade = json['localidade'];
     uf = json['uf'];
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['cep'] = cep;
+    data['logradouro'] = logradouro;
+    data['bairro'] = bairro;
+    data['localidade'] = localidade;
+    data['uf'] = uf;
+    return data;
+  }  
 }

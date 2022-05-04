@@ -8,6 +8,7 @@ class DefaultButton extends StatelessWidget {
     this.borderColor = Colors.transparent,
     required this.labelColor,
     required this.onTap,
+    this.enabled = true,
   }) : super(key: key);
 
   final String label;
@@ -15,6 +16,7 @@ class DefaultButton extends StatelessWidget {
   final Color? borderColor;
   final Color labelColor;
   final Function onTap;
+  final bool? enabled;
 
   @override
   Widget build(BuildContext context) {
@@ -28,29 +30,50 @@ class DefaultButton extends StatelessWidget {
           color: borderColor!,
         ),
       ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Material(
-          borderRadius: BorderRadius.circular(10),
-          color: backgroundColor,
-          child: InkWell(
-            onTap: () => onTap(),
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Text(
-                  label,
-                  style: TextStyle(
-                    color: labelColor,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,                    
+      child: enabled!
+        ? ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Material(
+              borderRadius: BorderRadius.circular(10),
+              color: backgroundColor,
+              child: InkWell(
+                onTap: () => onTap(),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Text(
+                      label,
+                      style: TextStyle(
+                        color: labelColor,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,                    
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          )
+        : ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Material(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.grey,
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Text(
+                    label,
+                    style: const TextStyle(
+                      color: Colors.black45,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,                    
+                    ),
                   ),
                 ),
               ),
             ),
           ),
-        ),
-      ),
     );
   }
 }

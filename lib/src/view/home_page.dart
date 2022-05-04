@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_cep/src/view/detail_page.dart';
 import 'package:get_cep/src/view/list_page.dart';
 import 'package:get_cep/src/widget/default_button.dart';
-import 'package:masked_text_field/masked_text_field.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,7 +12,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  TextEditingController fieldController = TextEditingController();  
+  var cepFormatter = MaskTextInputFormatter(
+    mask: '#####-###', 
+    filter: { "#": RegExp(r'[0-8]') },
+    type: MaskAutoCompletionType.lazy
+  );
+
+  String? _cep = '';
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +41,11 @@ class _HomePageState extends State<HomePage> {
           ),
           Container(
             padding: const EdgeInsets.all(20),
-            child: MaskedTextField(
-              textFieldController: fieldController,
-              mask: 'xx.xxx-xxx',
+            child: TextField(
+              inputFormatters: [cepFormatter],
               keyboardType: TextInputType.number,
-              maxLength: 10,
-              inputDecoration: const InputDecoration(
+              maxLength: 9,
+              decoration: const InputDecoration(
                 labelText: 'Informe o CEP',
                 labelStyle: TextStyle(
                   color: Color.fromRGBO(38, 63, 47, 1),
@@ -51,7 +56,11 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              onChange: (_) {},
+              onChanged: (cep) {
+                setState(() {
+                  _cep = cep.toString();
+                });                
+              },
             ),
           ),
           const Expanded(
@@ -71,13 +80,14 @@ class _HomePageState extends State<HomePage> {
           ),
           const SizedBox(height: 10),
           DefaultButton(
+            enabled: _cep!.isNotEmpty,
             label: 'Buscar',
             backgroundColor: const Color.fromRGBO(38, 63, 47, 1),
             labelColor: const Color.fromRGBO(133, 221, 164, 1),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const DetailPage()),
+                MaterialPageRoute(builder: (context) => DetailPage(cep: _cep ?? '')),
               );              
             },
           ),
