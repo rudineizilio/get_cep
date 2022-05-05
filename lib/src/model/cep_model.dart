@@ -21,8 +21,18 @@ class CepModel {
     uf = json['uf'];
   }
 
+  Map<String, dynamic> toMap() {
+    return {
+      'cep': cep,
+      'logradouro': logradouro,
+      'bairro': bairro,
+      'localidade': localidade,
+      'uf': uf,
+    };
+  }  
+
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['cep'] = cep;
     data['logradouro'] = logradouro;
     data['bairro'] = bairro;

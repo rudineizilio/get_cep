@@ -1,4 +1,4 @@
-import 'package:get_cep/src/models/cep_model.dart';
+import 'package:get_cep/src/model/cep_model.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
 
