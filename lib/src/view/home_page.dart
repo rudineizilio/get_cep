@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.black87,
         title: const Text(
@@ -35,9 +36,9 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
+          SizedBox(
             height: 200,
-            // child: Image.asset('location.png')
+            child: Image.asset('assets/images//location.png')
           ),
           Container(
             padding: const EdgeInsets.all(20),

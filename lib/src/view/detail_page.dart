@@ -22,7 +22,7 @@ class DetailPage extends StatefulWidget {
 class _DetailPageState extends State<DetailPage> {
   final _restClient = RestClient(Dio());
 
-  static const String createCepsTableScript = "CREATE TABLE ceps(id INTEGER PRIMARY KEY, cep TEXT, logradouro TEXT, bairro TEXT, localidade TEXT, uf TEXT)";
+  static const String createCepsTableScript = "CREATE TABLE ceps(cep TEXT, logradouro TEXT, bairro TEXT, localidade TEXT, uf TEXT)";
   static const String tableName = 'ceps';
 
   CepModel? _cep;
