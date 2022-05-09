@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           SizedBox(
             height: 200,
-            child: Image.asset('assets/images//location.png')
+            child: Image.asset('assets/images/location.png')
           ),
           Container(
             padding: const EdgeInsets.all(20),
